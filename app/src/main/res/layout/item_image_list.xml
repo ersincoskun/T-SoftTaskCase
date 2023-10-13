@@ -75,21 +75,8 @@
                 android:layout_height="@dimen/_34sdp"
                 android:layout_marginBottom="@dimen/_8sdp"
                 android:layout_marginEnd="@dimen/_8sdp"
-                android:src="@drawable/added_favorite_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
-
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/lottieAnimationView"
-                android:layout_width="@dimen/_120sdp"
-                android:layout_height="@dimen/_120sdp"
-                android:visibility="gone"
-                app:lottie_rawRes="@raw/add_favorite_animation"
-                app:lottie_loop="false"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

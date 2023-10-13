@@ -1,16 +1,17 @@
 package com.tsoft.taskcase.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.filter
+import androidx.paging.map
 import com.tsoft.taskcase.model.ImageHit
 import com.tsoft.taskcase.repo.ImageRepository
 import com.tsoft.taskcase.utils.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -21,28 +22,70 @@ constructor(
     private val imageRepository: ImageRepository
 ) : ViewModel() {
 
-    private lateinit var _imagesLiveData: LiveData<PagingData<ImageHit>>
+    private val _imagesLiveData = MutableLiveData<PagingData<ImageHit>>()
     val imagesLiveData: LiveData<PagingData<ImageHit>>
         get() = _imagesLiveData
 
     private val _filteredImagesLiveData = SingleLiveEvent<PagingData<ImageHit>>()
     val filteredImagesLiveData: LiveData<PagingData<ImageHit>> = _filteredImagesLiveData
 
+    private val _imageLiveDataReadyCallback = SingleLiveEvent<Boolean>()
+    val imageLiveDataReadyCallback: LiveData<Boolean> = _imageLiveDataReadyCallback
+
+    private var currentFlow: Flow<PagingData<ImageHit>>? = null
+
+    fun getImageList() {
+        viewModelScope.launch {
+            val favoriteIds = imageRepository.getFavoriteIds()
+            val newFlow = imageRepository.getImagesPager().flow
+                .map { pagingData ->
+                    pagingData.map { imageHit ->
+                        imageHit.copy(isFavorite = favoriteIds.contains(imageHit.id))
+                    }
+                }
+                .cachedIn(viewModelScope)
+
+            newFlow.asLiveData().observeForever { newData ->
+                _imagesLiveData.value = newData
+            }
+
+            _imageLiveDataReadyCallback.value = true
+        }
+    }
+
     fun filterImages(query: String) {
         val filtered = imagesLiveData.value?.filter {
-            it.user.contains(query, ignoreCase = true) // 'user' alanını filtreleme kriteri olarak kullanıyoruz
+            it.user.contains(query, ignoreCase = true)
         }
         filtered?.let {
             _filteredImagesLiveData.postValue(it)
         }
     }
 
-    fun getImageList() {
+    fun addFavorite(imageHit: ImageHit) {
+        viewModelScope.launch(Dispatchers.IO) {
+            imageRepository.addFavorite(imageHit)
+            refreshImageList()
+        }
+    }
+
+    fun deleteFavoriteById(id: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            imageRepository.deleteFavoriteById(id)
+            refreshImageList()
+        }
+    }
+
+    private fun refreshImageList() {
         viewModelScope.launch {
-            _imagesLiveData = imageRepository.getImagesPager()
-                .flow
-                .cachedIn(viewModelScope)
-                .asLiveData()
+            val favoriteIds = imageRepository.getFavoriteIds()
+            val currentPagingData = _imagesLiveData.value ?: return@launch
+
+            val newPagingData = currentPagingData.map { imageHit ->
+                imageHit.copy(isFavorite = favoriteIds.contains(imageHit.id))
+            }
+
+            _imagesLiveData.postValue(newPagingData)
         }
     }
 

@@ -1,5 +1,9 @@
 package com.tsoft.taskcase.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "favoriteDb")
 data class ImageHit(
     val id: Int,
     val pageURL: String,
@@ -22,5 +26,8 @@ data class ImageHit(
     val comments: Int,
     val user_id: Int,
     val user: String,
-    val userImageURL: String
+    val userImageURL: String,
+    var isFavorite: Boolean = false,
+    @PrimaryKey(autoGenerate = true)
+    var primaryId: Int? = null
 )

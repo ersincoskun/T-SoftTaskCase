@@ -2,12 +2,12 @@ package com.tsoft.taskcase.ui.fragment
 
 import android.os.Bundle
 import android.view.View
-import android.view.WindowManager
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.tsoft.taskcase.base.BaseFragment
 import com.tsoft.taskcase.databinding.FragmentImageListBinding
+import com.tsoft.taskcase.model.ImageHit
 import com.tsoft.taskcase.ui.ImageAdapter
 import com.tsoft.taskcase.viewmodel.ImageListFragmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,7 +21,11 @@ class ImageListFragment : BaseFragment<FragmentImageListBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        adapter = ImageAdapter()
+        adapter = ImageAdapter(addFavoriteAction = { imageHit ->
+            viewModel.addFavorite(imageHit)
+        }, deleteFavoriteAction = { id ->
+            viewModel.deleteFavoriteById(id)
+        })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,9 +45,12 @@ class ImageListFragment : BaseFragment<FragmentImageListBinding>() {
     }
 
     private fun subLiveData() {
-        viewModel.imagesLiveData.observe(viewLifecycleOwner) { pagingData ->
-            lifecycleScope.launch {
-                adapter.submitData(pagingData)
+        viewModel.imageLiveDataReadyCallback.observe(viewLifecycleOwner){
+            viewModel.imagesLiveData.observe(viewLifecycleOwner) { pagingData ->
+                lifecycleScope.launch {
+                    adapter.submitData(pagingData)
+                    //adapter.notifyDataSetChanged()
+                }
             }
         }
 

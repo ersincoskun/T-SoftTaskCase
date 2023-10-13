@@ -1,23 +1,26 @@
 package com.tsoft.taskcase.ui
 
-import android.animation.Animator
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.tsoft.taskcase.R
 import com.tsoft.taskcase.databinding.ItemImageListBinding
 import com.tsoft.taskcase.model.ImageHit
 import com.tsoft.taskcase.utils.loadGlideImage
+import com.tsoft.taskcase.utils.onSingleClickListener
 
-class ImageAdapter : PagingDataAdapter<ImageHit, ImageViewHolder>(IMAGE_COMPARATOR) {
+class ImageAdapter(val addFavoriteAction: (ImageHit) -> Unit, val deleteFavoriteAction: (Int) -> Unit) : PagingDataAdapter<ImageHit, ImageAdapter.ImageViewHolder>(IMAGE_COMPARATOR) {
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         getItem(position)?.let { holder.bind(it) }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
-        return ImageViewHolder.create(parent)
+        val binding = ItemImageListBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false
+        )
+        return ImageViewHolder(binding)
     }
 
     companion object {
@@ -26,46 +29,26 @@ class ImageAdapter : PagingDataAdapter<ImageHit, ImageViewHolder>(IMAGE_COMPARAT
             override fun areContentsTheSame(oldItem: ImageHit, newItem: ImageHit): Boolean = oldItem == newItem
         }
     }
-}
 
-class ImageViewHolder(private val binding: ItemImageListBinding) : RecyclerView.ViewHolder(binding.root) {
-
-    fun bind(imageHit: ImageHit) {
-        binding.apply {
-            civUserProfilePicture.loadGlideImage(imageHit.userImageURL)
-            tvUsername.text = imageHit.user
-            imageView.loadGlideImage(imageHit.webformatURL)
-            ivAddFavoriteIcon.setOnClickListener {
-                if (lottieAnimationView.visibility == View.GONE) {
-                    // Start the animation
-                    lottieAnimationView.visibility = View.VISIBLE
-                    lottieAnimationView.playAnimation()
-                } else {
-                    // If you need to handle the "else" case
+    inner class ImageViewHolder(private val binding: ItemImageListBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(imageHit: ImageHit) {
+            binding.apply {
+                civUserProfilePicture.loadGlideImage(imageHit.userImageURL)
+                tvUsername.text = imageHit.user
+                imageView.loadGlideImage(imageHit.webformatURL)
+                ivAddFavoriteIcon.setImageResource(
+                    if (imageHit.isFavorite) R.drawable.added_favorite_icon else R.drawable.not_added_favorite_icon
+                )
+                ivAddFavoriteIcon.onSingleClickListener {
+                    if (imageHit.isFavorite) {
+                        deleteFavoriteAction.invoke(imageHit.id)
+                    } else {
+                        addFavoriteAction.invoke(imageHit)
+                    }
                 }
             }
-
-            lottieAnimationView.addAnimatorListener(object : Animator.AnimatorListener {
-                override fun onAnimationStart(animation: Animator) {}
-
-                override fun onAnimationEnd(animation: Animator) {
-                    lottieAnimationView.visibility = View.GONE
-                }
-
-                override fun onAnimationCancel(animation: Animator) {}
-
-                override fun onAnimationRepeat(animation: Animator) {}
-            })
         }
     }
 
-    companion object {
-        fun create(parent: ViewGroup): ImageViewHolder {
-            val binding = ItemImageListBinding.inflate(
-                LayoutInflater.from(parent.context), parent, false
-            )
-            return ImageViewHolder(binding)
-        }
-    }
 }
 
