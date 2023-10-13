@@ -7,7 +7,6 @@ import com.tsoft.taskcase.utils.Resource
 import com.tsoft.taskcase.utils.await
 import javax.inject.Inject
 
-
 class UserRepository_Impl @Inject constructor() : UserRepository {
 
     private val mAuth = Firebase.auth
