@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">T-Soft Task Case</string>
 
+    <!--general-->
+    <string name="default_error_text">Bir hata meydana geldi</string>
+
     <!--loginFragment-->
     <string name="login_fragment_email_label">E-mail</string>
     <string name="login_fragment_email_et_hint">E-postanızı giriniz</string>
@@ -10,4 +13,10 @@
     <string name="login_fragment_login_button">Giriş Yap</string>
     <string name="login_fragment_do_not_have_an_account">Hesabınız yok mu?</string>
     <string name="login_fragment_sign_up">Kayıt Ol</string>
+    <string name="login_fragment_email_or_password_empty_error_message">E-posta ve şifre alanları boş bırakılamaz.</string>
+    <string name="login_fragment_invalid_email">E-posta adresi yanlış biçimlendirilmiş.</string>
+    <string name="login_fragment_wrong_password">Şifre yanlış.</string>
+    <string name="login_fragment_before_login_verify_error">Giriş yapmadan önce e-posta adresinizi doğrulayın. Doğrulama e-postası için gelen kutunuzu kontrol edin.</string>
+    <string name="login_fragment_user_not_found">Verilen e-posta adresine karşılık gelen bir kullanıcı yok.</string>
+    <string name="login_fragment_mail_not_valid">Geçersiz e-posta adresi</string>
 </resources>

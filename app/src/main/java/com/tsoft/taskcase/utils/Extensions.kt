@@ -12,6 +12,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.tsoft.taskcase.R
 import es.dmoral.toasty.Toasty
+import com.google.android.gms.tasks.Task
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlin.coroutines.cancellation.CancellationException
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
 
 fun View.onSingleClickListener(listener: View.OnClickListener) {
     this.setOnClickListener(object : OnSingleClickListener() {
@@ -36,6 +41,12 @@ fun Context?.showSuccessToasty(message: String) {
 fun Context?.showInfoToasty(message: String) {
     this?.let { safeContext ->
         Toasty.info(safeContext, message, Toasty.LENGTH_LONG).show()
+    }
+}
+
+fun Context?.showDefaultError() {
+    this?.let { safeContext ->
+        Toasty.error(safeContext, getString(R.string.default_error_text), Toasty.LENGTH_LONG).show()
     }
 }
 
@@ -98,6 +109,36 @@ fun View.setClickEffect() {
                 false
             }
             else -> false
+        }
+    }
+}
+
+suspend fun <T> Task<T>.await(): T {
+    if (isComplete) {
+        val e = exception
+        return if (e == null) {
+            if (isCanceled) {
+                throw CancellationException("Task $this was cancelled normally.")
+            } else {
+                result!!
+            }
+        } else {
+            throw e
+        }
+    }
+
+    return suspendCancellableCoroutine { continuation ->
+        addOnCompleteListener {
+            val e = exception
+            if (e == null) {
+                if (isCanceled) {
+                    continuation.cancel()
+                } else {
+                    continuation.resume(result!!)
+                }
+            } else {
+                continuation.resumeWithException(e)
+            }
         }
     }
 }
