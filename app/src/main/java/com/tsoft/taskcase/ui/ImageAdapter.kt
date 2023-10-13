@@ -1,6 +1,8 @@
 package com.tsoft.taskcase.ui
 
+import android.animation.Animator
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -28,8 +30,33 @@ class ImageAdapter : PagingDataAdapter<ImageHit, ImageViewHolder>(IMAGE_COMPARAT
 
 class ImageViewHolder(private val binding: ItemImageListBinding) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(image: ImageHit) {
-        binding.imageView.loadGlideImage(image.largeImageURL)
+    fun bind(imageHit: ImageHit) {
+        binding.apply {
+            civUserProfilePicture.loadGlideImage(imageHit.userImageURL)
+            tvUsername.text = imageHit.user
+            imageView.loadGlideImage(imageHit.webformatURL)
+            ivAddFavoriteIcon.setOnClickListener {
+                if (lottieAnimationView.visibility == View.GONE) {
+                    // Start the animation
+                    lottieAnimationView.visibility = View.VISIBLE
+                    lottieAnimationView.playAnimation()
+                } else {
+                    // If you need to handle the "else" case
+                }
+            }
+
+            lottieAnimationView.addAnimatorListener(object : Animator.AnimatorListener {
+                override fun onAnimationStart(animation: Animator) {}
+
+                override fun onAnimationEnd(animation: Animator) {
+                    lottieAnimationView.visibility = View.GONE
+                }
+
+                override fun onAnimationCancel(animation: Animator) {}
+
+                override fun onAnimationRepeat(animation: Animator) {}
+            })
+        }
     }
 
     companion object {

@@ -9,7 +9,6 @@ import com.tsoft.taskcase.base.BaseFragment
 import com.tsoft.taskcase.databinding.FragmentRegisterBinding
 import com.tsoft.taskcase.ui.activity.MainActivity
 import com.tsoft.taskcase.utils.*
-import com.tsoft.taskcase.viewmodel.LoginFragmentViewModel
 import com.tsoft.taskcase.viewmodel.RegisterFragmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
