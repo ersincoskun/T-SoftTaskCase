@@ -16,15 +16,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     private var lastSelectedView: View? = null
 
     override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
-        return super.onCreateView(name, context, attrs)
         setupBottomNavView()
+        return super.onCreateView(name, context, attrs)
     }
 
     private fun setupBottomNavView() {
         val navController = findNavController(R.id.mainFragmentContainerView)
         binding.bottomNavigationView.setupWithNavController(navController)
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            // Find the menu item associated with the destination id
+            // Destination id yi kullanarak seçilen menu item'ı bulunuyor
             var view: View? = null
             for (i in 0 until binding.bottomNavigationView.menu.size()) {
                 val item = binding.bottomNavigationView.menu.getItem(i)
@@ -34,10 +34,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 }
             }
 
-            // Reset the last selected item to its original scale
+            // En son seçilen item'ın scale'ı sıfırlanıyor
             lastSelectedView?.animate()?.scaleX(1f)?.scaleY(1f)?.setDuration(200)?.start()
 
-            // Animate the newly selected item
+            // Yeni seçilen item'ın scale'ı animasyonla büyütülüyor
             view?.animate()?.scaleX(1.2f)?.scaleY(1.2f)?.setDuration(200)?.start()
 
             lastSelectedView = view

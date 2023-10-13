@@ -81,6 +81,7 @@ class PreferencesHelper @Inject constructor(@ApplicationContext var context: Con
         editor.remove(key).apply()
     }
 
+    //favori listesi set collection'ınna koyularak depolanır
     var favoriteList: Set<String>?
         get() = getSharedPrefsValue(
             FAVORITE_LIST,

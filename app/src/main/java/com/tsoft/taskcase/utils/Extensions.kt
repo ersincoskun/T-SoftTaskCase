@@ -10,13 +10,12 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseAuthException
 import com.tsoft.taskcase.R
 import es.dmoral.toasty.Toasty
-import com.google.android.gms.tasks.Task
 import kotlinx.coroutines.suspendCancellableCoroutine
-import kotlin.coroutines.cancellation.CancellationException
 import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
 
 fun View.onSingleClickListener(listener: View.OnClickListener) {
     this.setOnClickListener(object : OnSingleClickListener() {
@@ -113,32 +112,50 @@ fun View.setClickEffect() {
     }
 }
 
-suspend fun <T> Task<T>.await(): T {
-    if (isComplete) {
+//bu extension'ın amacı firebase processlerini uzun sürerse coroutine içerisinde asenkron olarak yaparken
+//bir sonuç bekleyip return etmek
+suspend fun <T> Task<T>.await(): Resource {
+    //task tamamlanmış mı kontrol ediliyor
+    return if (isComplete) {
+        //task tamamlanmış
+
+        //task sırasında oluşan hata var mı kontrol ediliyor
         val e = exception
-        return if (e == null) {
+        if (e == null) {
+            //task iptal edilmiş mi kontrol ediliyor
             if (isCanceled) {
-                throw CancellationException("Task $this was cancelled normally.")
+                Resource.Error("TASK_CANCELLED")
             } else {
-                result!!
+                Resource.Success(Any())
             }
         } else {
-            throw e
+            (exception as? FirebaseAuthException)?.errorCode?.let { safeErrorCode ->
+                Resource.Error(safeErrorCode)
+            } ?: kotlin.run {
+                Resource.Error("UNKNOWN_ERROR")
+            }
         }
-    }
-
-    return suspendCancellableCoroutine { continuation ->
-        addOnCompleteListener {
-            val e = exception
-            if (e == null) {
-                if (isCanceled) {
-                    continuation.cancel()
+    } else {
+        //coroutine başlatılır ve işlem tamamlandığında response dönülür
+        suspendCancellableCoroutine { continuation ->
+            addOnCompleteListener {
+                val e = exception
+                if (e == null) {
+                    if (isCanceled) {
+                        continuation.resume(Resource.Error("TASK_CANCELLED"))
+                    } else {
+                        continuation.resume(Resource.Success(Any()))
+                    }
                 } else {
-                    continuation.resume(result!!)
+                    (exception as? FirebaseAuthException)?.errorCode?.let { safeErrorCode ->
+                        continuation.resume(Resource.Error(safeErrorCode))
+                    } ?: kotlin.run {
+                        continuation.resume(Resource.Error("UNKNOWN_ERROR"))
+                    }
+
                 }
-            } else {
-                continuation.resumeWithException(e)
             }
         }
     }
 }
+
