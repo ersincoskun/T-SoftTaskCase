@@ -30,7 +30,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
             when (responseResource) {
                 is Resource.Error -> {
                     when (responseResource.message) {
-                        "MAIL_NOT_VERIFIED" -> context.showErrorToasty(getString(R.string.login_fragment_before_login_verify_error))
                         "USER_NULL" -> context.showDefaultError()
                         "LOGIN_NOT_SUCCESSFUL" -> context.showDefaultError()
                         "ERROR_INVALID_EMAIL" -> context.showErrorToasty(getString(R.string.login_fragment_invalid_email))

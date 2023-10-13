@@ -17,11 +17,7 @@ class UserRepository_Impl @Inject constructor() : UserRepository {
             val authResult = mAuth.signInWithEmailAndPassword(email, password).await()
             val user = authResult.user
             if (user != null) {
-                if (user.isEmailVerified) {
-                    Resource.Success(Any())
-                } else {
-                    Resource.Error("MAIL_NOT_VERIFIED")
-                }
+                Resource.Success(Any())
             } else {
                 Resource.Error("USER_NULL")
             }
@@ -29,6 +25,22 @@ class UserRepository_Impl @Inject constructor() : UserRepository {
             Resource.Error(e.errorCode)
         } catch (e: Exception) {
             Resource.Error("LOGIN_NOT_SUCCESSFUL")
+        }
+    }
+
+    override suspend fun register(email: String, password: String): Resource {
+        return try {
+            val authResult = mAuth.createUserWithEmailAndPassword(email, password).await()
+            val user = authResult.user
+            if (user != null) {
+                Resource.Success(Any())
+            } else {
+                Resource.Error("USER_NULL")
+            }
+        } catch (e: FirebaseAuthException) {
+            Resource.Error(e.errorCode)
+        } catch (e: Exception) {
+            Resource.Error("REGISTER_NOT_SUCCESSFUL")
         }
     }
 

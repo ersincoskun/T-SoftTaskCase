@@ -16,7 +16,6 @@
     <string name="login_fragment_email_or_password_empty_error_message">E-posta ve şifre alanları boş bırakılamaz.</string>
     <string name="login_fragment_invalid_email">E-posta adresi yanlış biçimlendirilmiş.</string>
     <string name="login_fragment_wrong_password">Şifre yanlış.</string>
-    <string name="login_fragment_before_login_verify_error">Giriş yapmadan önce e-posta adresinizi doğrulayın. Doğrulama e-postası için gelen kutunuzu kontrol edin.</string>
     <string name="login_fragment_user_not_found">Verilen e-posta adresine karşılık gelen bir kullanıcı yok.</string>
     <string name="login_fragment_mail_not_valid">Geçersiz e-posta adresi</string>
 
@@ -27,5 +26,9 @@
     <string name="register_fragment_register_button">Hesap Oluştur</string>
     <string name="register_fragment_already_have_an_account">Zaten bir hesabınız var mı?</string>
     <string name="register_fragment_sign_in">Giriş Yap</string>
+    <string name="register_fragment_password_not_match">Girdiğiniz şifreler eşleşmiyor, lütfen kontrol edin.</string>
+    <string name="register_fragment_email_already_in_use_error_message">Bu e-posta adresi zaten kullanımda. Lütfen başka bir e-posta adresi kullanın.</string>
+    <string name="register_fragment_weak_password_error_message">Şifre çok zayıf. Lütfen daha güçlü bir şifre girin.</string>
+    <string name="register_fragment_too_many_requests_error_message">Çok fazla başarısız giriş denemesi. Lütfen daha sonra tekrar deneyin.</string>
 
 </resources>
