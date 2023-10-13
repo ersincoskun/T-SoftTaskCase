@@ -5,9 +5,9 @@ import android.widget.ProgressBar
 import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import androidx.viewbinding.ViewBinding
-import com.tsoft.taskcase.LoginActivity
-import com.tsoft.taskcase.MainActivity
 import com.tsoft.taskcase.R
+import com.tsoft.taskcase.ui.LoginActivity
+import com.tsoft.taskcase.ui.MainActivity
 import com.tsoft.taskcase.utils.remove
 import com.tsoft.taskcase.utils.show
 
@@ -27,14 +27,19 @@ abstract class BaseFragment<VB : ViewBinding?> : BaseTemplateFragment<VB>() {
     }
 
     fun showProgressBar() {
-        if (activity is LoginActivity) {
-            activity?.findViewById<ProgressBar>(R.id.loginProgressBar)?.show()
-            activity?.findViewById<View>(R.id.loginViewOpaqueBg)?.show()
-        } else if (activity is MainActivity) {
-            activity?.findViewById<ProgressBar>(R.id.mainProgressBar)?.show()
-            activity?.findViewById<View>(R.id.mainViewOpaqueBg)?.show()
+        activity?.let { safeActivity ->
+            when (safeActivity) {
+                is LoginActivity -> {
+                    safeActivity.findViewById<ProgressBar>(R.id.loginProgressBar)?.show()
+                    safeActivity.findViewById<View>(R.id.loginViewOpaqueBg)?.show()
+                }
+                is MainActivity -> {
+                    safeActivity.findViewById<ProgressBar>(R.id.mainProgressBar)?.show()
+                    safeActivity.findViewById<View>(R.id.mainViewOpaqueBg)?.show()
+                }
+                else -> {}
+            }
         }
-
     }
 
     fun hideProgressBar() {
