@@ -11,7 +11,9 @@ import com.tsoft.taskcase.ui.activity.MainActivity
 import com.tsoft.taskcase.utils.*
 import com.tsoft.taskcase.viewmodel.LoginFragmentViewModel
 import com.tsoft.taskcase.viewmodel.RegisterFragmentViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
 
     private val viewModel: RegisterFragmentViewModel by viewModels()
@@ -28,6 +30,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
 
     private fun subLiveData() {
         viewModel.registerResponse.observe(viewLifecycleOwner) { responseResource ->
+            hideProgressBar()
             when (responseResource) {
                 is Resource.Error -> {
                     when (responseResource.message) {

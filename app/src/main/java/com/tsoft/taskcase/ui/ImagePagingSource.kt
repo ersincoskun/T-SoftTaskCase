@@ -1,4 +1,4 @@
-package com.tsoft.taskcase
+package com.tsoft.taskcase.ui
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState

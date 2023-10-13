@@ -7,26 +7,39 @@ import androidx.fragment.app.viewModels
 import com.tsoft.taskcase.R
 import com.tsoft.taskcase.base.BaseFragment
 import com.tsoft.taskcase.databinding.FragmentLoginBinding
+import com.tsoft.taskcase.helpers.PreferencesHelper
 import com.tsoft.taskcase.ui.activity.MainActivity
 import com.tsoft.taskcase.utils.*
 import com.tsoft.taskcase.viewmodel.LoginFragmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
+    @Inject
+    lateinit var preferencesHelper: PreferencesHelper
     private val viewModel: LoginFragmentViewModel by viewModels()
     private lateinit var passwordEyeIconAction: PasswordEyeIconAction
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         subLiveData()
+        prepareUI()
+    }
+
+    private fun prepareUI() {
         passwordEyeIconAction = PasswordEyeIconAction(binding.etLoginPassword, binding.ivLoginPasswordEyeIcon)
         setListeners()
+        binding.cbRememberMe.isChecked = preferencesHelper.isRememberMeChecked
+        if (preferencesHelper.isRememberMeChecked && preferencesHelper.rememberMeMail.isNotEmpty()) {
+            binding.etLoginMail.setText(preferencesHelper.rememberMeMail)
+        }
     }
 
     private fun subLiveData() {
         viewModel.loginResponse.observe(viewLifecycleOwner) { responseResource ->
+            hideProgressBar()
             when (responseResource) {
                 is Resource.Error -> {
                     when (responseResource.message) {
@@ -56,12 +69,15 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     private fun setListeners() {
         binding.apply {
             btnLogin.onSingleClickListener {
-                if (etLoginMail.text.isBlank() || etLoginMail.text.isBlank()) {
+                if (etLoginMail.text.isBlank() || etLoginPassword.text.isBlank()) {
                     context.showErrorToasty(getString(R.string.login_fragment_email_or_password_empty_error_message))
                 } else if (!etLoginMail.text.toString().isValidEmail()) {
                     context.showErrorToasty(getString(R.string.login_fragment_mail_not_valid))
                 } else {
                     showProgressBar()
+                    if (preferencesHelper.isRememberMeChecked) {
+                        preferencesHelper.rememberMeMail = etLoginMail.text.toString()
+                    }
                     viewModel.login(binding.etLoginMail.text.toString(), binding.etLoginPassword.text.toString())
                 }
             }
@@ -71,7 +87,12 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
             }
 
             tvForgotPassword.onSingleClickListener {
-                //navigate forgot password
+                val action = LoginFragmentDirections.actionLoginFragmentToResetPasswordFragment()
+                navigate(navDirections = action)
+            }
+
+            cbRememberMe.setOnCheckedChangeListener { _, isChecked ->
+                preferencesHelper.isRememberMeChecked = isChecked
             }
         }
     }

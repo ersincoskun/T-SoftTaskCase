@@ -2,11 +2,9 @@ package com.tsoft.taskcase.repo
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import com.tsoft.taskcase.ImagePagingSource
+import com.tsoft.taskcase.ui.ImagePagingSource
 import com.tsoft.taskcase.model.ImageHit
 import com.tsoft.taskcase.remote.APIInterface
-import com.tsoft.taskcase.utils.Resource
-import com.tsoft.taskcase.utils.printErrorLog
 import javax.inject.Inject
 
 class ImageRepository_Impl @Inject constructor(val retrofitAPI: APIInterface) : ImageRepository {

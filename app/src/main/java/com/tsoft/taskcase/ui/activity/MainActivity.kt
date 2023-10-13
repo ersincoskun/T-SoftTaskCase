@@ -16,7 +16,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     private var lastSelectedView: View? = null
 
     override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
-        setupBottomNavView()
+        //setupBottomNavView()
         return super.onCreateView(name, context, attrs)
     }
 

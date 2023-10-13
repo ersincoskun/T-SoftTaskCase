@@ -14,6 +14,8 @@ class PreferencesHelper @Inject constructor(@ApplicationContext var context: Con
 
     companion object {
         const val FAVORITE_LIST = "FAVORITE_LIST"
+        const val REMEMBER_ME_MAIL = "REMEMBER_ME_MAIL"
+        const val IS_REMEMBER_ME_CHECKED = "IS_REMEMBER_ME_CHECKED"
     }
 
     private var sharedPreferences = createSharedPreferences(context)
@@ -81,11 +83,25 @@ class PreferencesHelper @Inject constructor(@ApplicationContext var context: Con
         editor.remove(key).apply()
     }
 
-    //favori listesi set collection'ınna koyularak depolanır
+    //favori listesi set collection'ına koyularak depolanır
     var favoriteList: Set<String>?
         get() = getSharedPrefsValue(
             FAVORITE_LIST,
             Set::class.java
         ) as? Set<String>
         set(value) = savePrefValue(FAVORITE_LIST, value)
+
+    var rememberMeMail: String
+        get() = getSharedPrefsValue(
+            REMEMBER_ME_MAIL,
+            String::class.java
+        ) as String
+        set(value) = savePrefValue(REMEMBER_ME_MAIL, value)
+
+    var isRememberMeChecked: Boolean
+        get() = getSharedPrefsValue(
+            IS_REMEMBER_ME_CHECKED,
+            Boolean::class.java
+        ) as Boolean
+        set(value) = savePrefValue(IS_REMEMBER_ME_CHECKED, value)
 }
