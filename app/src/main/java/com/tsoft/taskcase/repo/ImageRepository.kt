@@ -1,7 +1,9 @@
 package com.tsoft.taskcase.repo
 
+import androidx.paging.Pager
+import com.tsoft.taskcase.model.ImageHit
 import com.tsoft.taskcase.utils.Resource
 
 interface ImageRepository {
-    suspend fun getImages(page:Int): Resource
+    fun getImagesPager(): Pager<Int, ImageHit>
 }
