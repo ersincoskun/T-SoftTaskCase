@@ -31,4 +31,7 @@
     <string name="register_fragment_weak_password_error_message">Şifre çok zayıf. Lütfen daha güçlü bir şifre girin.</string>
     <string name="register_fragment_too_many_requests_error_message">Çok fazla başarısız giriş denemesi. Lütfen daha sonra tekrar deneyin.</string>
 
+    <!--resetPasswordFragment-->
+    <string name="reset_password_fragment_send_reset_password_button">Gönder</string>
+
 </resources>
