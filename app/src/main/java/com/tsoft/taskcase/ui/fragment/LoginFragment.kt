@@ -66,7 +66,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                 }
             }
             tvSignUp.onSingleClickListener {
-                //navigate signup
+                val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
+                navigate(navDirections = action)
             }
 
             tvForgotPassword.onSingleClickListener {
