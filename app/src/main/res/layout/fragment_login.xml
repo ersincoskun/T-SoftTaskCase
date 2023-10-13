@@ -1,15 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/haiti"
     tools:context=".ui.LoginFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        <ImageView
+            android:id="@+id/ivMeetNowLogo"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_80sdp"
+            android:layout_marginHorizontal="@dimen/_24sdp"
+            android:src="@drawable/tsoft_logo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_44sdp"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/ivMailIcon"
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_32sdp"
+            android:src="@drawable/ic_login_mail"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivMeetNowLogo" />
+
+        <TextView
+            android:id="@+id/tvLoginMailLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:includeFontPadding="false"
+            android:text="@string/login_fragment_email_label"
+            android:textColor="@color/white"
+            android:textSize="@dimen/medium_text_size"
+            app:layout_constraintTop_toTopOf="@+id/ivMailIcon"
+            app:layout_constraintBottom_toBottomOf="@+id/ivMailIcon"
+            app:layout_constraintStart_toEndOf="@+id/ivMailIcon" />
+
+        <EditText
+            android:id="@+id/etLoginMail"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_44sdp"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@drawable/edit_text_bg"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="@string/login_fragment_email_et_hint"
+            android:maxLength="320"
+            android:paddingHorizontal="@dimen/_16sdp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/dark_gray"
+            android:textSize="@dimen/medium_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivMailIcon" />
+
+        <ImageView
+            android:id="@+id/ivLoginPasswordIcon"
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:src="@drawable/ic_login_lock"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etLoginMail" />
+
+        <TextView
+            android:id="@+id/tvLoginPasswordLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:includeFontPadding="false"
+            android:text="@string/login_fragment_password_label"
+            android:textColor="@color/white"
+            android:textSize="@dimen/medium_text_size"
+            app:layout_constraintTop_toTopOf="@+id/ivLoginPasswordIcon"
+            app:layout_constraintBottom_toBottomOf="@+id/ivLoginPasswordIcon"
+            app:layout_constraintStart_toEndOf="@+id/ivLoginPasswordIcon" />
+
+        <EditText
+            android:id="@+id/etLoginPassword"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_48sdp"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@drawable/edit_text_bg"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="@string/login_fragment_password_et_hint"
+            android:paddingHorizontal="@dimen/_16sdp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/dark_gray"
+            android:textSize="@dimen/medium_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivLoginPasswordIcon" />
+
+        <ImageView
+            android:id="@+id/ivLoginPasswordEyeIcon"
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            tools:src="@drawable/ic_open_eye"
+            app:layout_constraintBottom_toBottomOf="@+id/etLoginPassword"
+            app:layout_constraintEnd_toEndOf="@+id/etLoginPassword"
+            app:layout_constraintTop_toTopOf="@+id/etLoginPassword" />
+
+        <TextView
+            android:id="@+id/tvForgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:fontFamily="@font/poppins_regular"
+            android:includeFontPadding="false"
+            android:text="@string/login_fragment_forgot_password"
+            android:textColor="@color/dark_gray"
+            android:textSize="@dimen/small_text_size"
+            app:layout_constraintEnd_toEndOf="@+id/etLoginPassword"
+            app:layout_constraintTop_toBottomOf="@+id/etLoginPassword" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnLogin"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:background="@drawable/background_button"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="@string/login_fragment_login_button"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/medium_text_size"
+            app:layout_constraintTop_toBottomOf="@+id/tvForgotPassword"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/llSignUpLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnLogin">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:includeFontPadding="false"
+                android:text="@string/login_fragment_do_not_have_an_account"
+                android:textColor="@color/dark_gray"
+                android:textSize="@dimen/small_text_size" />
+
+            <TextView
+                android:id="@+id/tvSignUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:includeFontPadding="false"
+                android:text="@string/login_fragment_sign_up"
+                android:textColor="@color/turquoise_start_color"
+                android:textSize="@dimen/small_text_size" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>

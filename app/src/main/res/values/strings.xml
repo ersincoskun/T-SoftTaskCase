@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">T-Soft Task Case</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--loginFragment-->
+    <string name="login_fragment_email_label">E-mail</string>
+    <string name="login_fragment_email_et_hint">E-postanızı giriniz</string>
+    <string name="login_fragment_password_label">Şifre</string>
+    <string name="login_fragment_password_et_hint">Şifrenizi giriniz</string>
+    <string name="login_fragment_forgot_password">Şifremi unuttum?</string>
+    <string name="login_fragment_login_button">Giriş Yap</string>
+    <string name="login_fragment_do_not_have_an_account">Hesabınız yok mu?</string>
+    <string name="login_fragment_sign_up">Kayıt Ol</string>
 </resources>
