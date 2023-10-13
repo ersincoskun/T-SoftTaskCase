@@ -37,4 +37,7 @@
     <string name="reset_password_fragment_mail_sent_message">E-Mail başarılı bir şekilde gönderildi, lütfen mail kutunuzu kontrol ediniz.</string>
     <string name="reset_password_fragment_email_empty_error_message">Lütfen E-posta adresinizi giriniz.</string>
 
+    <!--imageListFragment-->
+    <string name="image_list_fragment_search_edit_text_hint">Kullanıcı adı ara...</string>
+
 </resources>

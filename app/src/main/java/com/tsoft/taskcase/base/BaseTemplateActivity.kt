@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentActivity
 import androidx.viewbinding.ViewBinding
+import com.tsoft.taskcase.utils.printErrorLog
 import java.lang.reflect.ParameterizedType
 
 abstract class BaseTemplateActivity<T : ViewBinding> : FragmentActivity() {
@@ -17,10 +18,11 @@ abstract class BaseTemplateActivity<T : ViewBinding> : FragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        printErrorLog("current activity: $this")
         prepareBinding()
     }
 
-    final override fun onDestroy() {
+    override fun onDestroy() {
         super.onDestroy()
         mBinding = null
     }

@@ -2,6 +2,7 @@ package com.tsoft.taskcase.ui.activity
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.os.Looper
 import android.util.AttributeSet
 import android.view.View
@@ -14,11 +15,11 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
-    override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         android.os.Handler(Looper.getMainLooper()).postDelayed({
             startAppProcess()
         }, 2000)
-        return super.onCreateView(name, context, attrs)
     }
 
     private fun startAppProcess() {

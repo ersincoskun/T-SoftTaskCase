@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import com.tsoft.taskcase.utils.printErrorLog
 import java.lang.reflect.ParameterizedType
 
 open class BaseTemplateFragment<VB : ViewBinding?> : Fragment() {
@@ -15,7 +16,12 @@ open class BaseTemplateFragment<VB : ViewBinding?> : Fragment() {
     private var vgRoot: ViewGroup? = null
     private var vgFragmentContainer: ViewGroup? = null
 
-    final override fun onCreateView(
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        printErrorLog("current fragment: $this")
+    }
+
+    override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
