@@ -1,4 +1,4 @@
-package com.tsoft.taskcase.ui
+package com.tsoft.taskcase.ui.activity
 
 import com.tsoft.taskcase.base.BaseActivity
 import com.tsoft.taskcase.databinding.ActivitySplashBinding

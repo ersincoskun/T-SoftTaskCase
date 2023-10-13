@@ -6,8 +6,8 @@ import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import androidx.viewbinding.ViewBinding
 import com.tsoft.taskcase.R
-import com.tsoft.taskcase.ui.LoginActivity
-import com.tsoft.taskcase.ui.MainActivity
+import com.tsoft.taskcase.ui.activity.LoginActivity
+import com.tsoft.taskcase.ui.activity.MainActivity
 import com.tsoft.taskcase.utils.remove
 import com.tsoft.taskcase.utils.show
 

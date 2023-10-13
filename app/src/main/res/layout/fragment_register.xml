@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/haiti"
+    tools:context=".ui.fragment.RegisterFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/haiti"
+        android:paddingBottom="@dimen/_24sdp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:includeFontPadding="false"
+            android:text="@string/register_fragment_title"
+            android:textColor="@color/white"
+            android:textSize="@dimen/large_text_size"
+            app:layout_constraintTop_toTopOf="@+id/ivBackIcon"
+            app:layout_constraintBottom_toBottomOf="@+id/ivBackIcon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivBackIcon"
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_22sdp"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:src="@drawable/ic_left_arrow"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivMailIcon"
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_38sdp"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:src="@drawable/ic_login_mail"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivBackIcon" />
+
+        <TextView
+            android:id="@+id/tvRegisterMailLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:includeFontPadding="false"
+            android:text="@string/login_fragment_email_label"
+            android:textColor="@color/white"
+            android:textSize="@dimen/medium_text_size"
+            app:layout_constraintTop_toTopOf="@+id/ivMailIcon"
+            app:layout_constraintBottom_toBottomOf="@+id/ivMailIcon"
+            app:layout_constraintStart_toEndOf="@+id/ivMailIcon" />
+
+        <EditText
+            android:id="@+id/etRegisterMail"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_44sdp"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@drawable/edit_text_bg"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="@string/login_fragment_email_et_hint"
+            android:maxLength="320"
+            android:paddingHorizontal="@dimen/_16sdp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/dark_gray"
+            android:textSize="@dimen/medium_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivMailIcon" />
+
+        <ImageView
+            android:id="@+id/ivRegisterUsernameIcon"
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:src="@drawable/ic_login_lock"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etRegisterPassword" />
+
+        <TextView
+            android:id="@+id/tvRegisterUsernameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:includeFontPadding="false"
+            android:text="@string/register_fragment_password_again_label"
+            android:textColor="@color/white"
+            android:textSize="@dimen/medium_text_size"
+            app:layout_constraintTop_toTopOf="@+id/ivRegisterUsernameIcon"
+            app:layout_constraintBottom_toBottomOf="@+id/ivRegisterUsernameIcon"
+            app:layout_constraintStart_toEndOf="@+id/ivRegisterUsernameIcon" />
+
+        <EditText
+            android:id="@+id/etRegisterPasswordAgain"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_44sdp"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@drawable/edit_text_bg"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="@string/register_fragment_password_again_et_hint"
+            android:paddingHorizontal="@dimen/_16sdp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/dark_gray"
+            android:textSize="@dimen/medium_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivRegisterUsernameIcon" />
+
+        <ImageView
+            android:id="@+id/ivRegisterPasswordAgainEyeIcon"
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            tools:src="@drawable/ic_open_eye"
+            app:layout_constraintBottom_toBottomOf="@+id/etRegisterPasswordAgain"
+            app:layout_constraintEnd_toEndOf="@+id/etRegisterPasswordAgain"
+            app:layout_constraintTop_toTopOf="@+id/etRegisterPasswordAgain" />
+
+        <ImageView
+            android:id="@+id/ivRegisterPasswordIcon"
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:src="@drawable/ic_login_lock"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etRegisterMail" />
+
+        <TextView
+            android:id="@+id/tvRegisterPasswordLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:includeFontPadding="false"
+            android:text="@string/login_fragment_password_label"
+            android:textColor="@color/white"
+            android:textSize="@dimen/medium_text_size"
+            app:layout_constraintTop_toTopOf="@+id/ivRegisterPasswordIcon"
+            app:layout_constraintBottom_toBottomOf="@+id/ivRegisterPasswordIcon"
+            app:layout_constraintStart_toEndOf="@+id/ivRegisterPasswordIcon" />
+
+        <EditText
+            android:id="@+id/etRegisterPassword"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_44sdp"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@drawable/edit_text_bg"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="@string/login_fragment_password_et_hint"
+            android:paddingHorizontal="@dimen/_16sdp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/dark_gray"
+            android:textSize="@dimen/medium_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivRegisterPasswordIcon" />
+
+        <ImageView
+            android:id="@+id/ivRegisterPasswordEyeIcon"
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            tools:src="@drawable/ic_open_eye"
+            app:layout_constraintBottom_toBottomOf="@+id/etRegisterPassword"
+            app:layout_constraintEnd_toEndOf="@+id/etRegisterPassword"
+            app:layout_constraintTop_toTopOf="@+id/etRegisterPassword" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnRegister"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_32sdp"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:background="@drawable/background_button"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="@string/register_fragment_register_button"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/medium_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etRegisterPasswordAgain" />
+
+        <LinearLayout
+            android:id="@+id/llSignUpLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnRegister">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:includeFontPadding="false"
+                android:text="@string/register_fragment_already_have_an_account"
+                android:textColor="@color/dark_gray"
+                android:textSize="@dimen/small_text_size" />
+
+            <TextView
+                android:id="@+id/tvSignIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:includeFontPadding="false"
+                android:text="@string/register_fragment_sign_in"
+                android:textColor="@color/turquoise_start_color"
+                android:textSize="@dimen/small_text_size" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

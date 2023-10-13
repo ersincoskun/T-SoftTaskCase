@@ -1,4 +1,4 @@
-package com.tsoft.taskcase.ui
+package com.tsoft.taskcase.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import com.tsoft.taskcase.R
 import com.tsoft.taskcase.base.BaseFragment
 import com.tsoft.taskcase.databinding.FragmentLoginBinding
+import com.tsoft.taskcase.ui.activity.MainActivity
 import com.tsoft.taskcase.utils.*
 import com.tsoft.taskcase.viewmodel.LoginFragmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
