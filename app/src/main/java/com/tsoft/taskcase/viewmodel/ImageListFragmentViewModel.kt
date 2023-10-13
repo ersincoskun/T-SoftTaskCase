@@ -10,7 +10,6 @@ import com.tsoft.taskcase.repo.ImageRepository
 import com.tsoft.taskcase.utils.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -26,13 +25,14 @@ constructor(
     val imagesLiveData: LiveData<PagingData<ImageHit>>
         get() = _imagesLiveData
 
-    private val _filteredImagesLiveData = SingleLiveEvent<PagingData<ImageHit>>()
+    private val _filteredImagesLiveData = MutableLiveData<PagingData<ImageHit>>()
     val filteredImagesLiveData: LiveData<PagingData<ImageHit>> = _filteredImagesLiveData
 
     private val _imageLiveDataReadyCallback = SingleLiveEvent<Boolean>()
     val imageLiveDataReadyCallback: LiveData<Boolean> = _imageLiveDataReadyCallback
 
-    private var currentFlow: Flow<PagingData<ImageHit>>? = null
+    private var currentQuery = ""
+    var isImagesLiveDataListenEnable = true
 
     fun getImageList() {
         viewModelScope.launch {
@@ -54,6 +54,8 @@ constructor(
     }
 
     fun filterImages(query: String) {
+        currentQuery = query
+        isImagesLiveDataListenEnable = false
         val filtered = imagesLiveData.value?.filter {
             it.user.contains(query, ignoreCase = true)
         }
@@ -86,6 +88,10 @@ constructor(
             }
 
             _imagesLiveData.postValue(newPagingData)
+            if (_filteredImagesLiveData.value != null) {
+                filterImages(currentQuery)
+            }
+
         }
     }
 

@@ -7,7 +7,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.tsoft.taskcase.base.BaseFragment
 import com.tsoft.taskcase.databinding.FragmentImageListBinding
-import com.tsoft.taskcase.model.ImageHit
 import com.tsoft.taskcase.ui.ImageAdapter
 import com.tsoft.taskcase.viewmodel.ImageListFragmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -47,9 +46,10 @@ class ImageListFragment : BaseFragment<FragmentImageListBinding>() {
     private fun subLiveData() {
         viewModel.imageLiveDataReadyCallback.observe(viewLifecycleOwner){
             viewModel.imagesLiveData.observe(viewLifecycleOwner) { pagingData ->
-                lifecycleScope.launch {
-                    adapter.submitData(pagingData)
-                    //adapter.notifyDataSetChanged()
+                if (viewModel.isImagesLiveDataListenEnable) {
+                    lifecycleScope.launch {
+                        adapter.submitData(pagingData)
+                    }
                 }
             }
         }
