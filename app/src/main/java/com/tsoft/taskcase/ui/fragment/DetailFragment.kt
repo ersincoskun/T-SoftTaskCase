@@ -10,6 +10,7 @@ import com.tsoft.taskcase.databinding.FragmentDetailBinding
 import com.tsoft.taskcase.model.ImageHit
 import com.tsoft.taskcase.utils.loadGlideImage
 import com.tsoft.taskcase.utils.onSingleClickListener
+import com.tsoft.taskcase.utils.setClickEffect
 import com.tsoft.taskcase.utils.showDefaultError
 import com.tsoft.taskcase.viewmodel.DetailFragmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -49,6 +50,8 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
                 tvDownloadCount.text = safeImageHit.downloads.toString()
                 tvLikeCount.text = safeImageHit.likes.toString()
                 tvViewCount.text = safeImageHit.views.toString()
+                ivAddFavoriteIcon.setClickEffect()
+                ivBackIcon.setClickEffect()
                 showProgressBar()
                 viewModel.checkIsFavorite(safeImageHit)
             } ?: kotlin.run {

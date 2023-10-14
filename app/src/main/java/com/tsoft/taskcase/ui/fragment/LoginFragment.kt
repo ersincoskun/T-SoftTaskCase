@@ -30,11 +30,16 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     }
 
     private fun prepareUI() {
-        passwordEyeIconAction = PasswordEyeIconAction(binding.etLoginPassword, binding.ivLoginPasswordEyeIcon)
-        setListeners()
-        binding.cbRememberMe.isChecked = preferencesHelper.isRememberMeChecked
-        if (preferencesHelper.isRememberMeChecked && preferencesHelper.rememberMeMail.isNotEmpty()) {
-            binding.etLoginMail.setText(preferencesHelper.rememberMeMail)
+        binding.apply {
+            passwordEyeIconAction = PasswordEyeIconAction(etLoginPassword, ivLoginPasswordEyeIcon)
+            setListeners()
+            cbRememberMe.isChecked = preferencesHelper.isRememberMeChecked
+            if (preferencesHelper.isRememberMeChecked && preferencesHelper.rememberMeMail.isNotEmpty()) {
+                etLoginMail.setText(preferencesHelper.rememberMeMail)
+            }
+            btnLogin.setClickEffect()
+            tvSignUp.setClickEffect()
+            tvForgotPassword.setClickEffect()
         }
     }
 

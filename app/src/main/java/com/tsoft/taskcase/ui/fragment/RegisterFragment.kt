@@ -25,6 +25,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
         passwordEyeIconAction = PasswordEyeIconAction(binding.etRegisterPassword, binding.ivRegisterPasswordEyeIcon)
         passwordAgainEyeIconAction = PasswordEyeIconAction(binding.etRegisterPasswordAgain, binding.ivRegisterPasswordAgainEyeIcon)
         setListeners()
+        prepareUI()
     }
 
     private fun subLiveData() {
@@ -54,6 +55,14 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
                     context.showDefaultError()
                 }
             }
+        }
+    }
+
+    private fun prepareUI(){
+        binding.apply {
+            btnRegister.setClickEffect()
+            tvSignIn.setClickEffect()
+            ivBackIcon.setClickEffect()
         }
     }
 

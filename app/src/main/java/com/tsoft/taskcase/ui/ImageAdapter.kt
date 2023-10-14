@@ -10,6 +10,7 @@ import com.tsoft.taskcase.databinding.ItemImageListBinding
 import com.tsoft.taskcase.model.ImageHit
 import com.tsoft.taskcase.utils.loadGlideImage
 import com.tsoft.taskcase.utils.onSingleClickListener
+import com.tsoft.taskcase.utils.setClickEffect
 
 class ImageAdapter(val itemClickAction: (ImageHit) -> Unit, val addFavoriteAction: (ImageHit) -> Unit, val deleteFavoriteAction: (Int) -> Unit) : PagingDataAdapter<ImageHit, ImageAdapter.ImageViewHolder>(IMAGE_COMPARATOR) {
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
@@ -49,6 +50,8 @@ class ImageAdapter(val itemClickAction: (ImageHit) -> Unit, val addFavoriteActio
                 cardView.onSingleClickListener {
                     itemClickAction.invoke(imageHit)
                 }
+                cardView.setClickEffect()
+                ivAddFavoriteIcon.setClickEffect()
             }
         }
     }

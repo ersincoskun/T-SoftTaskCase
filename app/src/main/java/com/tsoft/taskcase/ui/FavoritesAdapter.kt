@@ -10,6 +10,7 @@ import com.tsoft.taskcase.model.ImageHit
 import com.tsoft.taskcase.utils.loadGlideImage
 import com.tsoft.taskcase.utils.onSingleClickListener
 import com.tsoft.taskcase.utils.remove
+import com.tsoft.taskcase.utils.setClickEffect
 
 class FavoritesAdapter(val itemClickListener: (ImageHit) -> Unit) : ListAdapter<ImageHit, FavoritesAdapter.FavoritesViewHolder>(FavoritesDiffUtil()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoritesViewHolder {
@@ -29,6 +30,7 @@ class FavoritesAdapter(val itemClickListener: (ImageHit) -> Unit) : ListAdapter<
             tvUsername.text = imageHit.user
             imageView.loadGlideImage(imageHit.webformatURL)
             ivAddFavoriteIcon.remove()
+            cardView.setClickEffect()
             cardView.onSingleClickListener {
                 itemClickListener.invoke(imageHit)
             }

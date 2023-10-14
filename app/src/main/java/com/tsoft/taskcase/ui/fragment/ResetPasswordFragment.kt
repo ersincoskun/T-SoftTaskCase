@@ -19,6 +19,7 @@ class ResetPasswordFragment : BaseFragment<FragmentResetPasswordBinding>() {
         super.onViewCreated(view, savedInstanceState)
         subLiveData()
         setListeners()
+        binding.btnSendResetPassword.setClickEffect()
     }
 
     private fun subLiveData() {
