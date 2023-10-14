@@ -25,7 +25,10 @@ class ImageListFragment : BaseFragment<FragmentImageListBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        adapter = ImageAdapter(addFavoriteAction = { imageHit ->
+        adapter = ImageAdapter(itemClickAction = { imageHit ->
+            val navDirections = ImageListFragmentDirections.actionImageListFragmentToDetailFragment(imageHit)
+            navigate(navDirections = navDirections)
+        }, addFavoriteAction = { imageHit ->
             viewModel.addFavorite(imageHit)
         }, deleteFavoriteAction = { id ->
             viewModel.deleteFavoriteById(id)
