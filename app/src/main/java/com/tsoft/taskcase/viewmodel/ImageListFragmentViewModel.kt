@@ -1,6 +1,9 @@
 package com.tsoft.taskcase.viewmodel
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.filter
@@ -21,11 +24,11 @@ constructor(
     private val imageRepository: ImageRepository
 ) : ViewModel() {
 
-    private val _imagesLiveData = MutableLiveData<PagingData<ImageHit>>()
+    private val _imagesLiveData = SingleLiveEvent<PagingData<ImageHit>>()
     val imagesLiveData: LiveData<PagingData<ImageHit>>
         get() = _imagesLiveData
 
-    private val _filteredImagesLiveData = MutableLiveData<PagingData<ImageHit>>()
+    private val _filteredImagesLiveData = SingleLiveEvent<PagingData<ImageHit>>()
     val filteredImagesLiveData: LiveData<PagingData<ImageHit>> = _filteredImagesLiveData
 
     private val _imageLiveDataReadyCallback = SingleLiveEvent<Boolean>()
@@ -66,8 +69,15 @@ constructor(
 
     fun addFavorite(imageHit: ImageHit) {
         viewModelScope.launch(Dispatchers.IO) {
-            imageRepository.addFavorite(imageHit)
-            refreshImageList()
+            val favoritesList = imageRepository.getFavoriteList()
+            var isExists = false
+            favoritesList.forEach {
+                if (it.id == imageHit.id) isExists = true
+            }
+            if (!isExists) {
+                imageRepository.addFavorite(imageHit)
+                refreshImageList()
+            }
         }
     }
 

@@ -15,6 +15,7 @@ import com.tsoft.taskcase.base.BaseFragment
 import com.tsoft.taskcase.databinding.FragmentFavoritesBinding
 import com.tsoft.taskcase.model.ImageHit
 import com.tsoft.taskcase.ui.FavoritesAdapter
+import com.tsoft.taskcase.utils.printErrorLog
 import com.tsoft.taskcase.viewmodel.FavoritesFragmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,11 +36,14 @@ class FavoritesFragment : BaseFragment<FragmentFavoritesBinding>() {
         subLiveData()
         binding.rvFavoritesList.adapter = adapter
         setItemTouchHelper()
+        showProgressBar()
         viewModel.getFavoritesList()
     }
 
     private fun subLiveData() {
         viewModel.favoritesListLiveData.observe(viewLifecycleOwner) { favoritesList ->
+            hideProgressBar()
+            printErrorLog("favorites list: $favoritesList")
             mFavoritesList.clear()
             mFavoritesList.addAll(favoritesList)
             adapter.submitList(favoritesList)
@@ -63,7 +67,10 @@ class FavoritesFragment : BaseFragment<FragmentFavoritesBinding>() {
                 val position = viewHolder.adapterPosition
                 val itemToRemove = mFavoritesList[position]
                 viewModel.deleteFavoriteById(itemToRemove.id)
-                adapter.notifyItemRemoved(position)
+                mFavoritesList.removeAt(position)
+                adapter.submitList(listOf())
+                adapter.submitList(mFavoritesList)
+                adapter.notifyDataSetChanged()
             }
 
             override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {

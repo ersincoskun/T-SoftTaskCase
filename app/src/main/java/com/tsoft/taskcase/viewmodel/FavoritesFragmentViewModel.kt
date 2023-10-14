@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tsoft.taskcase.model.ImageHit
 import com.tsoft.taskcase.repo.ImageRepository
+import com.tsoft.taskcase.utils.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -19,7 +20,7 @@ constructor(
     private val imageRepository: ImageRepository
 ) : ViewModel() {
 
-    private val _favoritesListLiveData = MutableLiveData<List<ImageHit>>()
+    private val _favoritesListLiveData = SingleLiveEvent<List<ImageHit>>()
     val favoritesListLiveData: LiveData<List<ImageHit>>
         get() = _favoritesListLiveData
 
