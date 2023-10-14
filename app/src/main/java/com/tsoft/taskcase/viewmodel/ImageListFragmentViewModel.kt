@@ -69,12 +69,8 @@ constructor(
 
     fun addFavorite(imageHit: ImageHit) {
         viewModelScope.launch(Dispatchers.IO) {
-            val favoritesList = imageRepository.getFavoriteList()
-            var isExists = false
-            favoritesList.forEach {
-                if (it.id == imageHit.id) isExists = true
-            }
-            if (!isExists) {
+            val favoriteIds = imageRepository.getFavoriteIds()
+            if (!favoriteIds.contains(imageHit.id)) {
                 imageRepository.addFavorite(imageHit)
                 refreshImageList()
             }
