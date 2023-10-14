@@ -1,6 +1,7 @@
 package com.tsoft.taskcase.ui.activity
 
 import android.content.Context
+import android.os.Bundle
 import android.util.AttributeSet
 import android.view.View
 import androidx.navigation.findNavController
@@ -14,6 +15,11 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     private var lastSelectedView: View? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setupBottomNavView()
+    }
 
     override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
         //setupBottomNavView()
