@@ -24,11 +24,11 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
     private var imageHit: ImageHit? = null
     private var mIsFavorite = false
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         subLiveData()
         setListeners()
         prepareUI()
-        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     private fun subLiveData() {
