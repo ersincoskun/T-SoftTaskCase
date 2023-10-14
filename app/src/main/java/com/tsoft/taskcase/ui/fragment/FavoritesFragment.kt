@@ -28,7 +28,10 @@ class FavoritesFragment : BaseFragment<FragmentFavoritesBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        adapter = FavoritesAdapter()
+        adapter = FavoritesAdapter { imageHit ->
+            val navDirections = FavoritesFragmentDirections.actionFavoritesFragmentToDetailFragment(imageHit)
+            navigate(navDirections = navDirections)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

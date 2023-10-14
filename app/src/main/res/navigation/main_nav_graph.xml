@@ -6,26 +6,35 @@
     app:startDestination="@id/imageListFragment">
 
     <fragment
+        android:id="@+id/imageListFragment"
+        android:name="com.tsoft.taskcase.ui.fragment.ImageListFragment"
+        android:label="fragment_image_list"
+        tools:layout="@layout/fragment_image_list">
+        <action
+            android:id="@+id/action_imageListFragment_to_detailFragment"
+            app:destination="@id/detailFragment">
+        </action>
+    </fragment>
+
+    <fragment
         android:id="@+id/detailFragment"
         android:name="com.tsoft.taskcase.ui.fragment.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" >
-        <action
-            android:id="@+id/action_detailFragment_to_favoritesFragment"
-            app:destination="@id/favoritesFragment" />
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="imageHitArg"
+            app:argType="com.tsoft.taskcase.model.ImageHit" />
     </fragment>
+
     <fragment
         android:id="@+id/favoritesFragment"
         android:name="com.tsoft.taskcase.ui.fragment.FavoritesFragment"
         android:label="fragment_favorites"
-        tools:layout="@layout/fragment_favorites" />
-    <fragment
-        android:id="@+id/imageListFragment"
-        android:name="com.tsoft.taskcase.ui.fragment.ImageListFragment"
-        android:label="fragment_image_list"
-        tools:layout="@layout/fragment_image_list" >
+        tools:layout="@layout/fragment_favorites">
         <action
-            android:id="@+id/action_imageListFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
+            android:id="@+id/action_favoritesFragment_to_detailFragment"
+            app:destination="@id/detailFragment">
+        </action>
     </fragment>
+
 </navigation>

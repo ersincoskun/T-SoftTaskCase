@@ -1,10 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    android:layout_width="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="@color/haiti"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.fragment.DetailFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <LinearLayout
+        android:id="@+id/llUsernameAreaContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/horizontal_margin"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/_8sdp"
+        android:paddingVertical="@dimen/_4sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-</FrameLayout>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civUserProfilePicture"
+            android:layout_width="@dimen/_34sdp"
+            android:layout_height="@dimen/_34sdp" />
+
+        <TextView
+            android:id="@+id/tvUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:includeFontPadding="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/small_text_size"
+            tools:text="asdasasd"
+            app:layout_constraintBottom_toBottomOf="@+id/civUserProfilePicture"
+            app:layout_constraintTop_toTopOf="@+id/civUserProfilePicture"
+            app:layout_constraintStart_toEndOf="@+id/civUserProfilePicture" />
+
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvImageContainer"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_200sdp"
+        android:layout_marginHorizontal="@dimen/horizontal_margin"
+        android:layout_marginTop="@dimen/_8sdp"
+        app:cardBackgroundColor="@color/navy_blue"
+        app:cardCornerRadius="@dimen/_8sdp"
+        app:layout_constraintTop_toBottomOf="@+id/llUsernameAreaContainer">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
+
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/ivAddFavoriteIcon"
+        android:layout_width="@dimen/_34sdp"
+        android:layout_height="@dimen/_34sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        app:layout_constraintTop_toBottomOf="@+id/cvImageContainer"
+        app:layout_constraintEnd_toEndOf="@+id/cvImageContainer" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/cvImageContainer"
+        app:layout_constraintTop_toTopOf="@+id/ivAddFavoriteIcon"
+        app:layout_constraintBottom_toBottomOf="@+id/ivAddFavoriteIcon">
+
+        <ImageView
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:src="@drawable/ic_like" />
+
+        <TextView
+            android:id="@+id/tvLikeCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:fontFamily="@font/poppins_regular"
+            android:includeFontPadding="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/small_text_size"
+            tools:text="12" />
+
+        <ImageView
+            android:layout_width="@dimen/_14ssp"
+            android:layout_height="@dimen/_14ssp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:src="@drawable/ic_comment" />
+
+        <TextView
+            android:id="@+id/tvCommentCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:fontFamily="@font/poppins_regular"
+            android:includeFontPadding="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/small_text_size"
+            tools:text="12" />
+
+        <ImageView
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:src="@drawable/ic_download" />
+
+        <TextView
+            android:id="@+id/tvDownloadCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:fontFamily="@font/poppins_regular"
+            android:includeFontPadding="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/small_text_size"
+            tools:text="12" />
+
+        <ImageView
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:src="@drawable/ic_open_eye" />
+
+        <TextView
+            android:id="@+id/tvViewCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:fontFamily="@font/poppins_regular"
+            android:includeFontPadding="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/small_text_size"
+            tools:text="12" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

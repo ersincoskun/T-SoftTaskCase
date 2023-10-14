@@ -1,8 +1,11 @@
 package com.tsoft.taskcase.model
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @Entity(tableName = "favoriteDb")
 data class ImageHit(
     val id: Int,
@@ -30,4 +33,4 @@ data class ImageHit(
     var isFavorite: Boolean = false,
     @PrimaryKey(autoGenerate = true)
     var primaryId: Int? = null
-)
+): Parcelable

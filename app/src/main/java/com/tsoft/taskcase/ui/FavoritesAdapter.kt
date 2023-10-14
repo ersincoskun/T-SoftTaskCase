@@ -8,9 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tsoft.taskcase.databinding.ItemImageListBinding
 import com.tsoft.taskcase.model.ImageHit
 import com.tsoft.taskcase.utils.loadGlideImage
+import com.tsoft.taskcase.utils.onSingleClickListener
 import com.tsoft.taskcase.utils.remove
 
-class FavoritesAdapter() : ListAdapter<ImageHit, FavoritesAdapter.FavoritesViewHolder>(FavoritesDiffUtil()) {
+class FavoritesAdapter(val itemClickListener: (ImageHit) -> Unit) : ListAdapter<ImageHit, FavoritesAdapter.FavoritesViewHolder>(FavoritesDiffUtil()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoritesViewHolder {
         return FavoritesViewHolder(
             ItemImageListBinding.inflate(
@@ -28,6 +29,9 @@ class FavoritesAdapter() : ListAdapter<ImageHit, FavoritesAdapter.FavoritesViewH
             tvUsername.text = imageHit.user
             imageView.loadGlideImage(imageHit.webformatURL)
             ivAddFavoriteIcon.remove()
+            cardView.onSingleClickListener {
+                itemClickListener.invoke(imageHit)
+            }
         }
 
     class FavoritesViewHolder(val binding: ItemImageListBinding) :
