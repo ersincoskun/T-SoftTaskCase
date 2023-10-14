@@ -1,9 +1,7 @@
 package com.tsoft.taskcase.ui.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.tsoft.taskcase.R
@@ -40,6 +38,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
     }
 
     private fun prepareUI() {
+        removeBottomSheet()
         imageHit = args.imageHitArg
         binding.apply {
             imageHit?.let { safeImageHit ->
@@ -67,6 +66,9 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
             else viewModel.addFavorite(imageHit!!)
             mIsFavorite = !mIsFavorite
             binding.ivAddFavoriteIcon.setImageResource(if (mIsFavorite) R.drawable.added_favorite_icon else R.drawable.not_added_favorite_icon)
+        }
+        binding.ivBackIcon.onSingleClickListener {
+            navigateBackStack()
         }
     }
 

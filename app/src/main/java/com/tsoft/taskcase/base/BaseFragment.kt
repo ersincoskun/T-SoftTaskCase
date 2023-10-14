@@ -5,6 +5,7 @@ import android.widget.ProgressBar
 import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import androidx.viewbinding.ViewBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.tsoft.taskcase.R
 import com.tsoft.taskcase.ui.activity.LoginActivity
 import com.tsoft.taskcase.ui.activity.MainActivity
@@ -23,6 +24,22 @@ abstract class BaseFragment<VB : ViewBinding?> : BaseTemplateFragment<VB>() {
         }
         navDirections?.let {
             Navigation.findNavController(binding.root).navigate(it)
+        }
+    }
+
+    fun showBottomSheet() {
+        activity?.let { safeActivity ->
+            if (safeActivity is MainActivity) {
+                safeActivity.findViewById<BottomNavigationView>(R.id.bottomNavigationView)?.show()
+            }
+        }
+    }
+
+    fun removeBottomSheet() {
+        activity?.let { safeActivity ->
+            if (safeActivity is MainActivity) {
+                safeActivity.findViewById<BottomNavigationView>(R.id.bottomNavigationView)?.remove()
+            }
         }
     }
 

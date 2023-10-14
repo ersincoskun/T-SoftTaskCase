@@ -40,4 +40,10 @@
     <!--imageListFragment-->
     <string name="image_list_fragment_search_edit_text_hint">Kullanıcı adı ara...</string>
 
+    <!--detailFragment-->
+    <string name="detail_fragment_title">Detay</string>
+
+    <!--favoritesFragment-->
+    <string name="favorites_fragment_title">Favoriler</string>
+
 </resources>
