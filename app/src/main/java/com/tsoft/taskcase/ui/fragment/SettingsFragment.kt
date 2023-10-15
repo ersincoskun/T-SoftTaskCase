@@ -24,7 +24,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        removeBottomNavView()
+        showBottomNavView()
         subLiveData()
         setListeners()
         prepareUI()

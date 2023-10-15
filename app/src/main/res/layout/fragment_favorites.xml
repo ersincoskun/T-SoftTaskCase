@@ -12,7 +12,7 @@
         android:id="@+id/tvFavoritesTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_24sdp"
         android:fontFamily="@font/poppins_bold"
         android:includeFontPadding="false"
         android:text="@string/favorites_fragment_title"

@@ -13,7 +13,7 @@
         android:layout_width="@dimen/_14sdp"
         android:layout_height="@dimen/_20sdp"
         android:layout_marginStart="@dimen/horizontal_margin"
-        android:layout_marginTop="@dimen/_44sdp"
+        android:layout_marginTop="@dimen/_24sdp"
         android:src="@drawable/ic_left_arrow"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
