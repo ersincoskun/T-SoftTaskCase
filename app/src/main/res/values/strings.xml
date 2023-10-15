@@ -1,8 +1,11 @@
 <resources>
-    <string name="app_name">T-Soft Task Case</string>
+    <string name="app_name">Social Image</string>
 
     <!--general-->
     <string name="default_error_text">Bir hata meydana geldi</string>
+    <string name="image_list_bottom_nav_view_title">Resimler Listesi</string>
+    <string name="favorites_bottom_nav_view_title">Favoriler Listesi</string>
+    <string name="settings_bottom_nav_view_title">Ayarlar</string>
 
     <!--loginFragment-->
     <string name="login_fragment_email_label">E-mail</string>
@@ -45,5 +48,18 @@
 
     <!--favoritesFragment-->
     <string name="favorites_fragment_title">Favoriler</string>
+
+    <!--settingsFragment-->
+    <string name="settings_fragment_title">Ayarlar</string>
+    <string name="settings_fragment_privacy_policy">Gizlilik Politikası</string>
+    <string name="settings_fragment_terms_of_service">Hizmet Şartları</string>
+    <string name="settings_fragment_delete_account">Hesabı Sil</string>
+    <string name="settings_fragment_logout">Çıkış Yap</string>
+    <string name="settings_fragment_sure_to_logout">Çıkış yapmak istediğinizden emin misiniz?</string>
+    <string name="settings_fragment_sure_to_delete_account_title">Hesabınızı silmek istediğinizden emin misiniz?</string>
+    <string name="settings_fragment_sure_to_logout_yes_button_text">Evet</string>
+    <string name="settings_fragment_sure_to_logout_no_button_text">Hayır</string>
+    <string name="settings_fragment_relogin_before_delete_account_text">Güvenliğiniz için hesabınızı silmeden önce tekrar giriş yapmanız gerekiyor.</string>
+    <string name="settings_fragment_delete_account_process_successful_text">Hesap silme işlemi başarılı oldu.</string>
 
 </resources>

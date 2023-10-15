@@ -29,7 +29,14 @@ class UserRepository_Impl @Inject constructor() : UserRepository {
     override suspend fun sendPasswordResetEmail(email: String): Resource {
         return try {
             mAuth.sendPasswordResetEmail(email).await()
-            Resource.Success(Any())
+        } catch (e: Exception) {
+            Resource.Error(e.message.toString())
+        }
+    }
+
+    override suspend fun deleteUser(): Resource {
+        return try {
+            return mAuth.currentUser?.delete()?.await() ?: Resource.Error("RESOURCE_NULL")
         } catch (e: Exception) {
             Resource.Error(e.message.toString())
         }

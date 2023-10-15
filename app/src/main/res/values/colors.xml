@@ -14,4 +14,6 @@
     <color name="dark_gray">#767676 </color>
     <color name="navy_blue_15_alpha">#26212045</color>
     <color name="haiti">#151638</color>
+    <color name="light_gray">#C2C3CA</color>
+    <color name="red">#f44336</color>
 </resources>

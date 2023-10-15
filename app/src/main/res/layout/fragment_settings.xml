@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/haiti"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragment.SettingsFragment">
+
+    <ImageView
+        android:id="@+id/ivBackIcon"
+        android:layout_width="@dimen/_14sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/horizontal_margin"
+        android:layout_marginTop="@dimen/_44sdp"
+        android:src="@drawable/ic_left_arrow"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvSettingsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/settings_fragment_title"
+        android:textColor="@color/white"
+        android:textSize="@dimen/large_text_size"
+        app:layout_constraintTop_toTopOf="@+id/ivBackIcon"
+        app:layout_constraintBottom_toBottomOf="@+id/ivBackIcon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clPrivacyPolicyContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/horizontal_margin"
+        android:layout_marginTop="@dimen/_32sdp"
+        app:layout_constraintTop_toBottomOf="@+id/ivBackIcon"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/tvPrivacyPolicy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/settings_fragment_privacy_policy"
+            android:textColor="@color/white"
+            android:textSize="@dimen/small_text_size"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:layout_width="@dimen/_12sdp"
+            android:layout_height="@dimen/_12sdp"
+            android:src="@drawable/arrow_right_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvPrivacyPolicy"
+            app:layout_constraintBottom_toBottomOf="@+id/tvPrivacyPolicy" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@color/light_gray"
+            app:layout_constraintTop_toBottomOf="@+id/tvPrivacyPolicy" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clTermsOfServiceContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/horizontal_margin"
+        android:layout_marginTop="@dimen/_16sdp"
+        app:layout_constraintTop_toBottomOf="@+id/clPrivacyPolicyContainer"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/tvTermsOfService"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/settings_fragment_terms_of_service"
+            android:textColor="@color/white"
+            android:textSize="@dimen/small_text_size"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:layout_width="@dimen/_12sdp"
+            android:layout_height="@dimen/_12sdp"
+            android:src="@drawable/arrow_right_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvTermsOfService"
+            app:layout_constraintBottom_toBottomOf="@+id/tvTermsOfService" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@color/light_gray"
+            app:layout_constraintTop_toBottomOf="@+id/tvTermsOfService" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clDeleteAccountContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/horizontal_margin"
+        android:layout_marginTop="@dimen/_16sdp"
+        app:layout_constraintTop_toBottomOf="@+id/clTermsOfServiceContainer"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/tvDeleteAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/settings_fragment_delete_account"
+            android:textColor="@color/white"
+            android:textSize="@dimen/small_text_size"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivDeleteIcon"
+            android:layout_width="@dimen/_12sdp"
+            android:layout_height="@dimen/_12sdp"
+            android:src="@drawable/ic_delete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvDeleteAccount"
+            app:layout_constraintBottom_toBottomOf="@+id/tvDeleteAccount" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@color/light_gray"
+            app:layout_constraintTop_toBottomOf="@+id/tvDeleteAccount" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clLogoutContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/horizontal_margin"
+        android:layout_marginTop="@dimen/_16sdp"
+        app:layout_constraintTop_toBottomOf="@+id/clDeleteAccountContainer"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/tvLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/settings_fragment_logout"
+            android:textColor="@color/red"
+            android:textSize="@dimen/small_text_size"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivLogoutIcon"
+            android:layout_width="@dimen/_12sdp"
+            android:layout_height="@dimen/_12sdp"
+            android:src="@drawable/logout_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvLogout"
+            app:layout_constraintBottom_toBottomOf="@+id/tvLogout" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@color/light_gray"
+            app:layout_constraintTop_toBottomOf="@+id/tvLogout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

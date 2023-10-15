@@ -126,7 +126,11 @@ suspend fun <T> Task<T>.await(): Resource {
             if (isCanceled) {
                 Resource.Error("TASK_CANCELLED")
             } else {
-                Resource.Success(Any())
+                if (isSuccessful) {
+                    Resource.Success(Any())
+                } else {
+                    Resource.Error("TASK_NOT_SUCCESSFUL")
+                }
             }
         } else {
             (exception as? FirebaseAuthException)?.errorCode?.let { safeErrorCode ->
@@ -144,7 +148,11 @@ suspend fun <T> Task<T>.await(): Resource {
                     if (isCanceled) {
                         continuation.resume(Resource.Error("TASK_CANCELLED"))
                     } else {
-                        continuation.resume(Resource.Success(Any()))
+                        if (isSuccessful) {
+                            continuation.resume(Resource.Success(Any()))
+                        } else {
+                            continuation.resume(Resource.Error("TASK_NOT_SUCCESSFUL"))
+                        }
                     }
                 } else {
                     (exception as? FirebaseAuthException)?.errorCode?.let { safeErrorCode ->
