@@ -39,7 +39,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
     }
 
     private fun prepareUI() {
-        removeBottomSheet()
+        removeBottomNavView()
         imageHit = args.imageHitArg
         binding.apply {
             imageHit?.let { safeImageHit ->

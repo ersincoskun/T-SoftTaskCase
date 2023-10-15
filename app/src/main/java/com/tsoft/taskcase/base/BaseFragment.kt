@@ -27,7 +27,7 @@ abstract class BaseFragment<VB : ViewBinding?> : BaseTemplateFragment<VB>() {
         }
     }
 
-    fun showBottomSheet() {
+    fun showBottomNavView() {
         activity?.let { safeActivity ->
             if (safeActivity is MainActivity) {
                 safeActivity.findViewById<BottomNavigationView>(R.id.bottomNavigationView)?.show()
@@ -35,7 +35,7 @@ abstract class BaseFragment<VB : ViewBinding?> : BaseTemplateFragment<VB>() {
         }
     }
 
-    fun removeBottomSheet() {
+    fun removeBottomNavView() {
         activity?.let { safeActivity ->
             if (safeActivity is MainActivity) {
                 safeActivity.findViewById<BottomNavigationView>(R.id.bottomNavigationView)?.remove()

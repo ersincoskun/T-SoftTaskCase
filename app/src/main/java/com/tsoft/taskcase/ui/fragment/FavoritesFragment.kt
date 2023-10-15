@@ -36,7 +36,7 @@ class FavoritesFragment : BaseFragment<FragmentFavoritesBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        showBottomSheet()
+        showBottomNavView()
         subLiveData()
         binding.rvFavoritesList.adapter = adapter
         setItemTouchHelper()

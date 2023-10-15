@@ -3,7 +3,6 @@ package com.tsoft.taskcase.ui.fragment
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import com.tsoft.taskcase.R
 import com.tsoft.taskcase.base.BaseFragment

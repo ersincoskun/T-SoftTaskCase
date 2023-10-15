@@ -37,7 +37,7 @@ class ImageListFragment : BaseFragment<FragmentImageListBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        showBottomSheet()
+        showBottomNavView()
         binding.rvImageList.adapter = adapter
         showProgressBar()
         viewModel.getImageList()
