@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_image_list">
         <action
             android:id="@+id/action_imageListFragment_to_detailFragment"
-            app:destination="@id/detailFragment">
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/enter_animation"
+            app:exitAnim="@anim/exit_animation"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right">
         </action>
     </fragment>
 
@@ -33,7 +37,11 @@
         tools:layout="@layout/fragment_favorites">
         <action
             android:id="@+id/action_favoritesFragment_to_detailFragment"
-            app:destination="@id/detailFragment">
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/enter_animation"
+            app:exitAnim="@anim/exit_animation"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right">
         </action>
     </fragment>
 

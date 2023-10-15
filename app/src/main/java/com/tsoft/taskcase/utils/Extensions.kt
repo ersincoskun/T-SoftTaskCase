@@ -92,9 +92,9 @@ fun View.setClickEffect() {
             MotionEvent.ACTION_DOWN -> {
                 v.alpha = 0.2f
                 v.animate()
-                    .scaleX(1.3f)  // 1.1 katına büyüt
-                    .scaleY(1.3f)
-                    .setDuration(200)  // Bu animasyon için süre (milisaniye cinsinden)
+                    .scaleX(1.1f)  // 1.1 katına büyütür
+                    .scaleY(1.1f)
+                    .setDuration(200)
                     .start()
                 false
             }

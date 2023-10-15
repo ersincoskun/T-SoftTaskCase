@@ -61,6 +61,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                     activity?.let { safeActivity ->
                         startActivity(Intent(safeActivity, MainActivity::class.java))
                         safeActivity.finish()
+                        safeActivity.overridePendingTransition(R.anim.enter_animation, R.anim.exit_animation)
                     } ?: kotlin.run {
                         context.showErrorToasty(getString(R.string.default_error_text))
                     }
