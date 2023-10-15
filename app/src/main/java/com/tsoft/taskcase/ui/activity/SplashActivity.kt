@@ -14,6 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.Theme_TSoftTaskCase)
         super.onCreate(savedInstanceState)
         android.os.Handler(Looper.getMainLooper()).postDelayed({
             startAppProcess()

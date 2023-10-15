@@ -8,26 +8,35 @@
     android:background="@color/haiti"
     tools:context=".ui.fragment.LoginFragment">
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewLogo"
+        android:layout_width="@dimen/_140sdp"
+        android:layout_height="@dimen/_140sdp"
+        android:layout_marginHorizontal="@dimen/horizontal_margin"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/_32sdp"
+        app:layout_constraintTop_toTopOf="parent">
+
         <ImageView
-            android:id="@+id/ivMeetNowLogo"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_80sdp"
-            android:layout_marginHorizontal="@dimen/_24sdp"
-            android:src="@drawable/tsoft_logo"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="@dimen/_44sdp"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="match_parent"
+            android:src="@drawable/app_logo"
+            android:scaleType="centerCrop" />
+
+    </androidx.cardview.widget.CardView>
 
         <ImageView
             android:id="@+id/ivMailIcon"
             android:layout_width="@dimen/_16sdp"
             android:layout_height="@dimen/_16sdp"
             android:layout_marginStart="@dimen/horizontal_margin"
-            android:layout_marginTop="@dimen/_32sdp"
+            android:layout_marginTop="@dimen/_44sdp"
             android:src="@drawable/ic_login_mail"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivMeetNowLogo" />
+            app:layout_constraintTop_toBottomOf="@+id/cardViewLogo" />
 
         <TextView
             android:id="@+id/tvLoginMailLabel"
@@ -110,6 +119,7 @@
         android:layout_centerVertical="true"
         android:fontFamily="@font/poppins_regular"
         android:text="@string/login_fragment_remember_me_check_box_text"
+        android:buttonTint="@color/turquoise_start_color"
         android:textColor="@color/white"
         android:layout_marginTop="@dimen/_8sdp"
         android:textSize="@dimen/small_text_size"
